@@ -18,10 +18,12 @@ class Action(object):
 
 # Класс "Меню", содержит все поля и предоставляет возможность выберать между ними
 class Menu(object):
-    def __init__(self, title, prev_menu=None):
+    def __init__(self, title, choose = 0, prev_menu = None):
         self.title = title         # Заголовок меню
         self.actions = []          # Пункты меню, изначально пустые
         self.prev_menu = prev_menu # Ссылка на предыдущее меню
+        self.choose = choose       # Меню - выбор одного элемента из списка
+        self.result = None         # Выбранный пункт
         self.actions.append(
             Action(
               0,
@@ -49,7 +51,8 @@ class Menu(object):
 
     # Запуск меню
     def start(self):
-        while True:
+        self.Running = True
+        while self.Running:
             curses.wrapper(self.print_menu)
             curses.wrapper(self.choice)
     
@@ -73,7 +76,11 @@ class Menu(object):
             stdscr.refresh()
         curses.endwin()
         system("cls")
-        self.actions[self.selected-1].execute()
+        if self.choose:
+            self.result = self.actions[self.selected-1].description
+            self.Running = False
+        else:
+            self.actions[self.selected-1].execute()
     
     # Начальный вывод всех элементов меню
     def print_menu(self, stdscr):
