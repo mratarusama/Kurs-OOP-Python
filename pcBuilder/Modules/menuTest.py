@@ -1,5 +1,5 @@
-import dynMenu
-import dbInterface
+from Modules import dynMenu
+from Modules import dbInterface
 
 myDB = dbInterface.createDB('test.db')
 glob = "Test"

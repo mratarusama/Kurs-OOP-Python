@@ -1,11 +1,11 @@
-from detailEnum import *
-import dbInterface
-import Details
-import dynMenu
+from Modules.detailEnum import *
+from Modules import dbInterface
+from Modules import Details
+from Modules import dynMenu
 
 class buildPC(object):
     def __init__(self):
-        self.db = dbInterface.createDB('details.db')
+        self.db = dbInterface.createDB('./DataBase/details.db')
         self.Body = None
         self.Motherboard = None
         self.CPU = None

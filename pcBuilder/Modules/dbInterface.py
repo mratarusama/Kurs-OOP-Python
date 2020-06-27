@@ -15,8 +15,8 @@ class createDB(object):
         else:
            self.conn = sqlite3.connect(self.name)
            self.c = self.conn.cursor()
-           self.c.executescript(open('buildDB.sql', 'r').read())
-           self.c.executescript(open('fillDBTestData.sql', 'r').read())
+           self.c.executescript(open('./DataBase/buildDB.sql', 'r').read())
+           self.c.executescript(open('./DataBase/fillDBTestData.sql', 'r').read())
            self.conn.commit()
     
     def executeQuery(self, query):
@@ -27,6 +27,3 @@ class createDB(object):
     
     def getAllDetails(self, fromUnit):
         return self.executeQuery(f'select * from {fromUnit}')
-    
-    def findByName(self, fromUnit, name):
-        return self.executeQuery(f'select * from {fromUnit} where Name = \'{name}\'')
