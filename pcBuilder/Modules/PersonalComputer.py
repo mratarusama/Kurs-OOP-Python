@@ -256,6 +256,7 @@ class buildPC(object):
             print('Oh No, I think you broke your Сase trying to fit a taller cooler into it ;c')
             input(self.Body.name + ', rest in peace')
             del self.GPU
+            self.GPU = None
             return -1
         
         totalPower = 11
@@ -270,7 +271,15 @@ class buildPC(object):
             print('Oh No, I think you burned your Power supply ;c')
             input(self.PowSupply.name + ', rest in peace')
             del self.PowSupply
+            self.PowSupply = None
             return -1            
+        
+        if self.CPU.tdp > self.Cooler.tdp:
+            print('Oh No, I think you burned your CPU ;c')
+            input(self.CPU.name + ', rest in peace')
+            del self.CPU
+            self.CPU = None
+            return -1
         
         print('Congratulations, your build is working c;\n\n')
         print('                               .,,uod8B8bou,,.')
