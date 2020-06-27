@@ -1,0 +1,1 @@
+start /max .\Scripts\start.bat
